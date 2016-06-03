@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Foreign libraries
     'django_extensions',
-    'crispy_forms'
-    # Own projects
+    'crispy_forms',
+    # Own apps
+    'track',
+    'backend'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -129,5 +131,12 @@ STATICFILES_DIRS = (
 )
 
 
-MEDIA_ROOT = BASE_DIR + '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
+
+# Path to folder, where we will store all users git repositories
+GIT_ROOT = os.path.join(BASE_DIR, 'media/storage')
+
+CRISPY_CLASS_CONVERTERS = {'textinput': "form-control",
+                           'emailinput': "form-control",
+                           'passwordinput': "form-control"}

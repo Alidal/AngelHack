@@ -17,8 +17,14 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from basic.views import RegistrationView
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # Add custom registration view
+    url(r'^signup$', RegistrationView.as_view()),
+    # All other login and registration views
     url(r'^', include('registration.backends.simple.urls')),
     # Main page
     url(r'^$', TemplateView.as_view(template_name='main.html')),
