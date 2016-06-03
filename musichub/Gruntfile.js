@@ -2,21 +2,21 @@ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       scripts: {
-        files: ['static/src/coffee/**/*.coffee'],
+        files: ['static/dev/coffee/**/*.coffee'],
         tasks: ['coffee:static']
       },
       styles: {
-        files: ['static/src/less/**/*.less'],
+        files: ['static/dev/less/**/*.less'],
         tasks: ['less:dev']
       }
     },
     less: {
       dev: {
         options : {
-          compress: true
+          compress: false
         },
         files: {
-          'static/build/css/style.css': ['static/src/less/**/*.less']
+          'static/build/css/style.css': ['static/dev/less/**/*.less']
         }
       }
     },
@@ -26,14 +26,17 @@ module.exports = function(grunt) {
           join: true
         },
         files: {
-          'static/build/js/formUtil.js': ['static/src/coffee/formUtil.coffee'],
+          'static/build/js/formUtil.js': ['static/dev/coffee/formUtil.coffee'],
         }
       }
     },
     concat: {
       libs: {
         files: {
-          'static/build/css/libs.css': ['node_modules/bootstrap/dist/css/bootstrap.min.css']
+          'static/build/css/libs.css': ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
+          'static/build/js/libs.js': [
+            'node_modules/jquery/dist/jquery.min.js'
+          ]
         }
       }
     },
