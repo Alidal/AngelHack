@@ -1,8 +1,12 @@
+sudo apt-get install cmake python3-virtualenv
+# Create virtualenv
 virtualenv -p /usr/bin/python3 env
 source env/bin/acivate
 # Install pygit2
-sudo apt-get install libffi-dev
 bash ./bin/pygit_install
 # Install all other requirements
 pip install -r requirements.txt
 
+cd musichub
+npm install
+grunt
