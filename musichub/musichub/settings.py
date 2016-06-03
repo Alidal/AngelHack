@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     # Own apps
     'track',
-    'backend'
+    'backend',
 ]
 
 MIDDLEWARE_CLASSES = [
