@@ -8,6 +8,10 @@ module.exports = function(grunt) {
       styles: {
         files: ['static/dev/less/**/*.less'],
         tasks: ['less:dev']
+      },
+      jsx: {
+        files: ['static/dev/templates/**/*.jsx'],
+        tasks: ['react']
       }
     },
     less: {
@@ -26,7 +30,7 @@ module.exports = function(grunt) {
           join: true
         },
         files: {
-          'static/build/js/formUtil.js': ['static/dev/coffee/formUtil.coffee'],
+          'static/build/js/repo.js': ['static/dev/coffee/repo.coffee'],
         }
       }
     },
@@ -35,7 +39,8 @@ module.exports = function(grunt) {
         files: {
           'static/build/css/libs.css': ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
           'static/build/js/libs.js': [
-            'node_modules/jquery/dist/jquery.min.js'
+            'node_modules/jquery/dist/jquery.min.js',
+            'static/dev/js/**/*.js'
           ]
         }
       }
@@ -46,7 +51,7 @@ module.exports = function(grunt) {
           {expand: true, flatten: true, src: 'node_modules/bootstrap/dist/fonts/**', dest: 'static/build/fonts/'}
         ]
       }
-    }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-less');
