@@ -40,7 +40,7 @@ def get_abc_note_from_midi(code):
     }
 
     note = table[code % 12]
-    octave = int((code - 60) / 12)
+    octave = int((code - 36) / 12)
     if octave < 0:
         note += "".join(',' * (-octave))
     elif octave > 0:
@@ -107,6 +107,7 @@ def convert(file=None):
                         cur_beat += " "
                         previous_duration = beat.duration.value
                 cur_measure += cur_beat
+                # Delete unnecessary /n's
                 cur_measure = cur_measure.replace("\n", "")
                 if len(measures) % 4 == 0:
                     cur_measure += "\n"

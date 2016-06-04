@@ -8,9 +8,18 @@ class EditorView(View):
     template_name = 'repo/repo.html'
 
     def get(self, request, username, pk):
-        track = Track.objects.get(pk=pk).get_track()
-        if request.GET.get('branch', None):
-            value = track[request.GET['branch']]
+        track = Track.objects.get(pk=pk)
+        notes = track.get_track()
+        if request.GET.get('instrument', None):
+            key = request.GET['instrument']
+            value = notes[key]
+            del notes[key]
         else:
-            key, value = track.popitem()
-        return render(request, self.template_name, {'track': value})
+            key, value = notes.popitem()
+        context = {
+            'notes': value,
+            'track': track,
+            'instrument': key,
+            'instruments': notes.keys()
+        }
+        return render(request, self.template_name, context)

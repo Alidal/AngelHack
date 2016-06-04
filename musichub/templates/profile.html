@@ -14,8 +14,11 @@
                     <ul class="list-inline pull-right">
                         <li><p class="followers"><small>Followers</small><br>1</p></li>
                         <li><p class="following"><small>Following</small><br>1</p></li>
-                        <li><p><a href="#" class="follow btn btn-success"><i class="fa fa-users" aria-hidden="true"></i> Follow</a></p></li>
-                        <li><p><a href="/new" class="newrepo btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create new repo</a></p></li>
+                        {% if request.user.username != user.username %}
+                            <li><p><a href="#" class="follow btn btn-success"><i class="fa fa-users" aria-hidden="true"></i> Follow</a></p></li>
+                        {% else %}
+                            <li><p><a href="/new" class="newrepo btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create new repo</a></p></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -25,7 +28,7 @@
                 {% for track in tracks %}
                 <div class="col-xs-12 col-md-6 col-lg-4">
                     <div class="repo">
-                        <h4 class="title"><a href="/{{ request.user.username }}/{{ track.pk }}">{{ track.title }}</a></h4>
+                        <h4 class="title"><a href="/{{ user.username }}/{{ track.pk }}">{{ track.title }}</a></h4>
                         <div class="row">
                             <div class="col-xs-6">
                                 <p class="instruments"><i class="fa fa-play-circle" aria-hidden="true"> tracks: guitar, vox</i></p>

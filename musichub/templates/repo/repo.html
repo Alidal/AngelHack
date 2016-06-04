@@ -5,7 +5,7 @@
 <div id="repo" class="content">
     <div class="container">
         <div class="options">
-            <h2><span class="song-title">Test song</span> - <small><a href="/user">vladkampov</a></small></h2>
+            <h2><span class="song-title">{{ track.title }}</span> - <small><a href="/user">{{ track.owner.username }}</a></small></h2>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="btn-group" role="group" aria-label="...">
@@ -21,14 +21,16 @@
                         </div>
                         <div class="dropdown btn-group">
                             <button class="btn btn-default dropdown-toggle" type="button" id="track" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fa fa-headphones" aria-hidden="true"> track: </i> guitar
+                                <i class="fa fa-headphones" aria-hidden="true"> track: </i> {{ instrument }}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="track">
-                                <li><a href="/repo/">vox</a></li>
+                                {% for instrument in instruments %}
+                                    <li><a href="/{{ request.user.username }}/{{ track.pk }}?instrument={{ instrument }}">{{ instrument }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 commits</a>
+                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits|length }} commits</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
@@ -46,15 +48,7 @@
         <div id="midi"></div>
         <div id="notes">
             <div id="notesABC">
-                X: 1
-                T: Cooley's
-                M: 4/4
-                L: 1/8
-                K: Emin
-                |:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
-                "Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
-                |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
-                "Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                {{ notes }}
             </div>
             <div id="sheetABC"></div>
         </div>
