@@ -17,8 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from track.views import AddTrackView
-
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,5 +27,5 @@ urlpatterns = [
     # Main page
     url(r'^$', TemplateView.as_view(template_name='main.html')),
     # Apps urls
-    url(r'^upload$', AddTrackView.as_view()),
+    url(r'^', include('track.urls')),
 ]

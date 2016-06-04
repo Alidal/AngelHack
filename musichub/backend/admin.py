@@ -1,3 +1,4 @@
 from django.contrib import admin
+from backend.models import Commit
 
-# Register your models here.
+admin.site.register(Commit)
