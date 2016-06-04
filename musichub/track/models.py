@@ -1,10 +1,10 @@
+import json
 from io import StringIO
 
 from django.db import models
 from django.contrib.auth.models import User
 
 from backend.models import Commit
-import json
 from track.converter import convert
 
 
@@ -48,3 +48,7 @@ class Track(models.Model):
     def update(self, description, new_file):
         new_file = self.get_abc_from_file(new_file)
         Commit.create(description, new_file, self)
+
+    def get_track(self):
+        file = open(self.repository.split('.')[0] + '/' + self.title, 'r+')
+        return json.loads(file.read())

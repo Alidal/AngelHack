@@ -46,6 +46,6 @@ class ProfileView(View):
         tracks = Track.objects.filter(owner=user)
         context = {
             'user': user,
-            'repositories': tracks
+            'tracks': tracks
         }
         return render(request, self.template_name, context)

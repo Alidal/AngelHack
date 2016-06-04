@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Own apps
     'track',
     'backend',
+    'personal'
 ]
 
 MIDDLEWARE_CLASSES = [
