@@ -4,8 +4,13 @@
 {% block content %}
 <div id="new_repo" class="content">
     <div class="container">
-        <h3>Create new repository</h3>
-        <form action="/lalka" method="POST" class="dropzone" id="new_repo">
+        {% if '/repository' in request.path %}
+            <h3>Create new repository</h3>
+        {% elif %}
+            <h3>Create new commit</h3>
+        {% endif %}
+        <form action="/upload" method="POST" class="dropzone" id="new_repo">
+            {% csrf_token %}
             <div id="div_id_repotitle" class="control-group"> 
                 <label for="id_repotitle" class="control-label requiredField">
                     Repo title<span class="asteriskField">*</span> 
