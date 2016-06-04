@@ -32,6 +32,7 @@ module.exports = function(grunt) {
         files: {
           'static/build/js/repo.js': ['static/dev/coffee/repo.coffee'],
           'static/build/js/home.js': ['static/dev/coffee/home.coffee'],
+          'static/build/js/profile.js': ['static/dev/coffee/profile.coffee'],
         }
       }
     },
