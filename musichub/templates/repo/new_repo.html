@@ -4,27 +4,39 @@
 {% block content %}
 <div id="new_repo" class="content">
     <div class="container">
-        {% if '/repository' in request.path %}
+        {% if "/repository" in request.path %}
             <h3>Create new repository</h3>
-        {% elif %}
+        {% else %}
             <h3>Create new commit</h3>
         {% endif %}
         <form action="/upload" method="POST" class="dropzone" id="new_repo">
             {% csrf_token %}
             <div id="div_id_repotitle" class="control-group"> 
+                {% if "/repository" in request.path %}
                 <label for="id_repotitle" class="control-label requiredField">
                     Repo title<span class="asteriskField">*</span> 
                 </label> 
                 <div class="controls"> 
                     <input class="form-control" id="id_repotitle" maxlength="30" name="repotitle" type="text">
                 </div> 
+                {% else %}
+                <label for="id_commitdescription" class="control-label requiredField">
+                    Commit description<span class="asteriskField">*</span> 
+                </label> 
+                <div class="controls"> 
+                    <input class="form-control" id="id_commitdescription" maxlength="30" name="repotitle" type="text">
+                </div> 
+                {% endif %}
             </div>
+            {% csrf_token %}
             <div id="div_id_file" class="control-group"> 
                 <label for="id_file" class="control-label requiredField">
                     GTP or ABC file<span class="asteriskField">*</span> 
                 </label> 
-                <input type="file" name="file" id="fileinput" />
-                <div id="drop" class="controls btn"> 
+                <div class="controls">
+                    <input type="file" name="file" id="id_file" class="form-control" />
+                </div>
+                <div id="drop" class="btn"> 
                     <i class="fa fa-cloud-upload" aria-hidden="true"></i> drop files here
                 </div> 
             </div>

@@ -17,7 +17,7 @@
                         {% if request.user.username != user.username %}
                             <li><p><a href="#" class="follow btn btn-success"><i class="fa fa-users" aria-hidden="true"></i> Follow</a></p></li>
                         {% else %}
-                            <li><p><a href="/new" class="newrepo btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create new repo</a></p></li>
+                            <li><p><a href="/{{ user.username }}/repository/create" class="newrepo btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create new repo</a></p></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -25,24 +25,35 @@
         </div>
         <div class="repos">
             <div class="row">
-                {% for track in tracks %}
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="repo">
-                        <h4 class="title"><a href="/{{ user.username }}/{{ track.pk }}">{{ track.title }}</a></h4>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <p class="instruments"><i class="fa fa-play-circle" aria-hidden="true"> tracks: guitar, vox</i></p>
+                {% if tracks %}
+                    {% for track in tracks %}
+                    <div class="col-xs-12 col-md-6 col-lg-4">
+                        <div class="repo">
+                            <h4 class="title"><a href="/{{ user.username }}/{{ track.pk }}">{{ track.title }}</a></h4>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <p class="instruments"><i class="fa fa-play-circle" aria-hidden="true"> tracks: guitar, vox</i></p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p class="colaborators"><i class="fa fa-flask" aria-hidden="true"> colaborators: {{ track.editors.all|length }}</i></p>
+                                </div>
                             </div>
-                            <div class="col-xs-6">
-                                <p class="colaborators"><i class="fa fa-flask" aria-hidden="true"> colaborators: {{ track.editors.all|length }}</i></p>
-                            </div>
+                            {% with commit=track.commits.first %}
+                            <div class="bg-info"><i class="fa fa-clock-o" aria-hidden="true"> last change: </i>{{ commit.description }}</div>
+                            {% endwith %}
                         </div>
-                        {% with commit=track.commits.first %}
-                        <div class="bg-info"><i class="fa fa-clock-o" aria-hidden="true"> last change: </i>{{ commit.description }} <a href="#">Vlad Sydorenko</a></div>
-                        {% endwith %}
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <div id="no-repos">
+                        {% if request.user.username != user.username %}
+                            <h2>User don't have repositories</h2>
+                        {% else %}
+                            <h2>You don't have repositories now</h2>
+                            <h3>But you can <a href="/{{ user.username }}/repository/create" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create</a></h3>
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

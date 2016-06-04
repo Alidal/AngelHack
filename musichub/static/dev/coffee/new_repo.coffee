@@ -15,12 +15,27 @@ $ ->
         $(this).removeClass('hover').addClass('drop').html('<i class="fa fa-cloud-upload" aria-hidden="true"></i> File successfuly uploaded')
         e.preventDefault();
         files = e.originalEvent.dataTransfer.files
-        document.getElementById('fileinput').files = files
+        document.getElementById('id_file').files = files
 
     obj.on 'click', (e)->
-        e.preventDefault();
-        $('#fileinput').click()
+        e.preventDefault()
+        $('#id_file').click()
 
-    $('#fileinput').on 'change', (e)->
+    $('#id_file').on 'change', (e)->
         obj.removeClass('hover').addClass('drop').html('<i class="fa fa-cloud-upload" aria-hidden="true"></i> File successfuly uploaded')
        
+    $('form').submit (e)->
+        e.preventDefault()
+        formData = new FormData
+        formData.append "input", $('input:text').val()
+        formData.append "file", document.getElementById('id_file').files[0]
+
+        $.ajax
+            method: "POST",
+            url: "/upload",
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            data: formData
+        .success (data)->
+            console.log data
