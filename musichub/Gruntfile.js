@@ -31,13 +31,17 @@ module.exports = function(grunt) {
         },
         files: {
           'static/build/js/repo.js': ['static/dev/coffee/repo.coffee'],
+          'static/build/js/home.js': ['static/dev/coffee/home.coffee'],
         }
       }
     },
     concat: {
       libs: {
         files: {
-          'static/build/css/libs.css': ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
+          'static/build/css/libs.css': [
+            'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/font-awesome/css/font-awesome.min.css'
+          ],
           'static/build/js/libs.js': [
             'node_modules/jquery/dist/jquery.min.js',
             'static/dev/js/**/*.js'
@@ -48,7 +52,8 @@ module.exports = function(grunt) {
     copy: {
       fonts: {
         files: [
-          {expand: true, flatten: true, src: 'node_modules/bootstrap/dist/fonts/**', dest: 'static/build/fonts/'}
+          {expand: true, flatten: true, src: 'node_modules/bootstrap/dist/fonts/**', dest: 'static/build/fonts/'},
+          {expand: true, flatten: true, src: 'node_modules/font-awesome/fonts/**', dest: 'static/build/fonts/'}
         ]
       }
     },

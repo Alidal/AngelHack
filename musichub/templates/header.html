@@ -2,18 +2,18 @@
     <div class="container">
         <div class="col-xs-12 col-md-4">
             <div class="logo">
-                <h1 class="title"><a href="/">MusicHub</a></h1>
+                <h1 class="title"><a href="/"><span class="fa fa-music"></span> MusicHub</a></h1>
             </div>
         </div>
         <div class="col-xs-12 col-md-8">
             <div class="header-menu">
                 <ul class="list-inline pull-right">
                     {% if not request.user.is_authenticated %}
-                        <li><a href="/login" class="btn btn-default">Log in</a></li>
-                        <li><a href="/signup" class="btn btn-success">Sign up</a></li>
+                        <li><a href="/login" class="btn">Log in</a></li>
+                        <li><a href="/signup" class="btn btn-success"><b>Sign up</b></a></li>
                     {% else %}
-                        <li><a href="/{{ request.user.username }}" class="btn btn-default">{{ request.user.username }}<i class="fa fa-angle-down"></i></a></li>
-                        <li><a href="/logout" class="btn btn-success">Logout</a></li>
+                        <li><a href="/{{ request.user.username }}" class="btn btn-success">{{ request.user.username }}</a></li>
+                        <li><a href="/logout" class="logout btn"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                     {% endif %}
                 </ul>
             </div>

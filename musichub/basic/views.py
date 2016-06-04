@@ -1,8 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout
+from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.views.generic.edit import FormView
 from django.views.generic.base import View
 from basic.forms import RegistrationForm, LoginForm
+from track.models import Track
 
 
 class LogoutView(View):
@@ -33,3 +36,15 @@ class LoginView(FormView):
         self.user = form.get_user()
         login(self.request, self.user)
         return super().form_valid(form)
+
+class ProfileView(View):
+    template_name = "profile.html"
+
+    def get(self, request, username):
+        user = User.objects.get(username=username)
+        tracks = Track.objects.filter(owner=user)
+        context = {
+            'user': user,
+            'repositories': tracks
+        }
+        return render(request, self.template_name, context)

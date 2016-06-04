@@ -21,12 +21,10 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # Custom registration and login
-    url(r'^', include('basic.urls')),
-    # All other login and registration views
-    url(r'^', include('registration.backends.simple.urls')),
     # Main page
     url(r'^$', TemplateView.as_view(template_name='main.html')),
     url(r'^repo$', TemplateView.as_view(template_name='repo/repo.html')),
     # Apps urls
     url(r'^', include('track.urls')),
+    url(r'^', include('basic.urls')),
 ]
