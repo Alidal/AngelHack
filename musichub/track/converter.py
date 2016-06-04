@@ -6,7 +6,10 @@ def generate_header(song):
     song_text = [line.lyrics for line in song.lyrics.lines]
 
     if any(song_text):
+        # Delete all empty strings
+        song_text = filter(None, song_text)
         song_text = "\nW: ".join(song_text)
+        song_text = song_text.replace('\r\n', '\nW:')
     else:
         song_text = ""
 
@@ -47,15 +50,16 @@ def get_abc_note_from_midi(code):
 
 
 def duration(note):
-    from fractions import Fraction
-    duration = Fraction(str(note.durationPercent))
-    return str("%i/%i" % (duration.numerator, duration.denominator))
+    duration = note.beat.duration.value
+    if duration > 8:
+        return "1/%i" % (duration / 8)
+    return str(1 / (duration / 8))
 
 
 def add_effects(note, effects):
     if effects.staccato:
         note = '.' + note
-    #if effects.acce
+    # if effects.acce
     return note
 
 
@@ -82,7 +86,10 @@ def convert(track):
                     cur_beat += abc_note
                 cur_beat += "] "
                 cur_measure += cur_beat
+                if len(measures) % 4 == 0:
+                    cur_measure += "\n"
             measures.append(cur_measure)
         measures[-1] += " |]"
+        measures[1] = "[" + measures[1]
         tracks[track.name] = "| ".join(measures)
     return tracks
