@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout
 from django.views.generic.edit import FormView
 from django.views.generic.base import View
-from registration.views import RegistrationView as DjangoRegistrationView
 from basic.forms import RegistrationForm, LoginForm
 
 
@@ -12,13 +11,22 @@ class LogoutView(View):
         return HttpResponseRedirect("/")
 
 
-class RegistrationView(DjangoRegistrationView):
+class RegistrationView(FormView):
     form_class = RegistrationForm
+    success_url = "/"
+    template_name = "auth/register.html"
+
+    def form_valid(self, form):
+        form.save()
+        user = form.instance
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(self.request, user)
+        return super().form_valid(form)
 
 
 class LoginView(FormView):
     form_class = LoginForm
-    template_name = "registration/login.html"
+    template_name = "auth/login.html"
     success_url = "/"
 
     def form_valid(self, form):
