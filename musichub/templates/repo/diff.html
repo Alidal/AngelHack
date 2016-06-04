@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div id="diff" class="content">
+    <div class="container">
+        <div class="options">
+            <h2><span class="song-title">Test song</span> - <small><a href="/user">vladkampov</a></small></h2>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="branch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="fa fa-tree" aria-hidden="true"> branch: </i> master
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="branch">
+                                <li><a href="/repo/tree/new">new</a></li>
+                                <li><a href="/repo/tree/live">live</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="track" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="fa fa-headphones" aria-hidden="true"> track: </i> guitar
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="track">
+                                <li><a href="/repo/">vox</a></li>
+                            </ul>
+                        </div>
+                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 commits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><br><br></div>
+        <div id="midiOld"></div>
+        <div id="midiNew"></div>
+        <div class="row">
+            <div id="notesOld">
+                <div class="playOld">
+                </div>
+                <div id="notesABCOld">
+                    X: 1
+                    T: Cooley's
+                    M: 4/4
+                    L: 1/8
+                    K: Emin
+                    |:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
+                    "Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                    |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
+                    "Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                </div>
+                <div id="sheetABCOld"></div>
+            </div>
+            <div id="notesNew">
+                <div class="playNew">
+                </div>
+                <div id="notesABCNew">
+                    X: 1
+                    T: Cooley's
+                    M: 4/4
+                    L: 1/8
+                    K: Emin
+                    |:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
+                    "Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                    |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
+                    "Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                </div>
+                <div id="sheetABCNew"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(window).ready(function() {
+        changes = [6, 9]
+    })
+</script>
+<script src="{% static 'js/diff.js' %}"></script>
+{% endblock %}

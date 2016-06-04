@@ -100,8 +100,15 @@ body {
                 width: 100%;
             }
         }
-        &#repo {
-            #notes {
+        &#repo,
+        &#diff {
+            .row {
+                margin: 0;
+
+            }
+            #notes,
+            #notesOld,
+            #notesNew {
                 background-color: #fff;
                 -webkit-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
                 -moz-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
@@ -109,14 +116,28 @@ body {
                 border: 1px solid #42EFEF;
                 border-top: none;
                 padding: 25px;
-                #notesABC {
+                #notesABC,
+                #notesABCOld,
+                #notesABCNew {
                     display: none;
                 }
                 #sheetABC {
                     margin: auto;
                 }
             }
-            #midi {
+            #notesOld,
+            #notesNew {
+                .playOld,
+                .playNew {
+                    background-color: #f5f5f5;
+                }
+                float: left;
+                overflow: hidden;
+                width: 50%;
+            }
+            #midi,
+            #midiOld,
+            #midiNew {
                 display: none;
             }
             .play {
