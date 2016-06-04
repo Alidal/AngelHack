@@ -14,4 +14,4 @@ class AddTrackForm(forms.Form):
         self.helper.form_id = 'signup'
         self.helper.form_method = 'post'
 
-        self.helper.add_input(Submit('submit', 'Sign Up', css_class="btn-success"))
+        self.helper.add_input(Submit('submit', 'Upload', css_class="btn-success"))

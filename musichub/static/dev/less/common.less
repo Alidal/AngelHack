@@ -63,7 +63,6 @@ body {
         &#signup,
         &#repo {
             .container {
-                margin-top: 20px;
                 padding: 15px;
                 .options {
                     padding: 15px;
@@ -107,11 +106,28 @@ body {
                 -moz-box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
                 box-shadow: inset 0px 0px 9px 0px rgba(0,0,0,0.75);
                 border: 1px solid #42EFEF;
+                border-top: none;
+                padding: 25px;
                 #notesABC {
                     display: none;
                 }
                 #sheetABC {
                     margin: auto;
+                }
+            }
+            #midi {
+                display: none;
+            }
+            .play {
+                background-color: #f5f5f5;
+                padding: 15px;
+                a {
+                    color: #222222;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: #444444 !important;
+                    }
                 }
             }
         }

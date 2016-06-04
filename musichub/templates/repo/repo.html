@@ -5,7 +5,7 @@
 <div id="repo" class="content">
     <div class="container">
         <div class="options">
-            <h3>Test song - <small><a href="/user">vladkampov</a></small></h3>
+            <h2><span class="song-title">Test song</span> - <small><a href="/user">vladkampov</a></small></h2>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="btn-group" role="group" aria-label="...">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="dropdown btn-group">
                             <button class="btn btn-default dropdown-toggle" type="button" id="track" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="fa fa-headphones" aria-hidden="true"></i> track: </i> guitar
+                                <i class="fa fa-headphones" aria-hidden="true"> track: </i> guitar
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="track">
@@ -33,14 +33,15 @@
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="pull-right">
-                        <a href="edit" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                        <a href="upload" class="btn btn-success"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
+                        <a href="edit" class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                        <a href="upload" class="btn btn-success upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="play">
-            
+            <a href="#" class="btn" id="play"><i class="fa fa-play" aria-hidden="true"></i> Play</a>
+            <a href="#" class="btn" id="stop"><i class="fa fa-stop" aria-hidden="true"></i> Stop</a>
         </div>
         <div id="midi"></div>
         <div id="notes">

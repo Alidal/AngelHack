@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import FormView
 from django.views.generic.base import View
-from basic.forms import RegistrationForm, LoginForm
+from personal.forms import RegistrationForm, LoginForm
 from track.models import Track
 
 
@@ -36,6 +36,7 @@ class LoginView(FormView):
         self.user = form.get_user()
         login(self.request, self.user)
         return super().form_valid(form)
+
 
 class ProfileView(View):
     template_name = "profile.html"

@@ -45,8 +45,8 @@ module.exports = function(grunt) {
           ],
           'static/build/js/libs.js': [
             'node_modules/jquery/dist/jquery.min.js',
-            'static/dev/js/**/*.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
+            'static/dev/js/**/*.js',
           ]
         }
       }
@@ -55,7 +55,9 @@ module.exports = function(grunt) {
       fonts: {
         files: [
           {expand: true, flatten: true, src: 'node_modules/bootstrap/dist/fonts/**', dest: 'static/build/fonts/'},
-          {expand: true, flatten: true, src: 'node_modules/font-awesome/fonts/**', dest: 'static/build/fonts/'}
+          {expand: true, flatten: true, src: 'node_modules/font-awesome/fonts/**', dest: 'static/build/fonts/'},
+          {expand: true, flatten: true, src: 'static/dev/img/**', dest: 'static/build/img/'},
+          {expand: true, flatten: true, src: 'static/dev/soundfont/**', dest: 'static/build/soundfont/'}
         ]
       }
     },

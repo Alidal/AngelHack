@@ -1,7 +1,11 @@
+from io import StringIO
+
 from django.db import models
 from django.contrib.auth.models import User
 
 from backend.models import Commit
+import json
+from track.converter import convert
 
 
 class Track(models.Model):
@@ -21,13 +25,26 @@ class Track(models.Model):
         return "%s - %s" % (self.owner.username, self.title)
 
     @classmethod
+    def get_abc_from_file(self, file):
+        # Can take GP5 or ABC files. Returns ABC
+        try:
+            # Convert from GP5 to ABC
+            result = convert(file)
+            return StringIO(json.dumps(result))
+        except:
+            # If file already in ABC format
+            return file
+
+    @classmethod
     def create(cls, title, owner, file):
         obj = cls(title=title, owner=owner)
         obj.title = title
         obj.owner = owner
+        file = cls.get_abc_from_file(file)
         # Create initial commit (automatically creates new repository)
         Commit.create("Initial commit", file, obj, initial=True)
         obj.save()
 
-    def update(self, description, new_file, *args, **kwargs):
+    def update(self, description, new_file):
+        new_file = self.get_abc_from_file(new_file)
         Commit.create(description, new_file, self)

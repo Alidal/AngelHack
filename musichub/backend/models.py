@@ -1,4 +1,5 @@
 import os
+import json
 import pygit2 as git
 
 from django.db import models
@@ -39,7 +40,7 @@ class Commit(models.Model):
         author = git.Signature(track.owner.username, track.owner.email)
         committer = author
         # Get parents list
-        commits = Commit.objects.filter(track=track).order_by('time').values_list('hash', flat=True)
+        commits = Commit.objects.filter(track=track).order_by('-time').values_list('hash', flat=True)
 
         commit_hash = repository.create_commit("refs/heads/master",
                                                author, committer,
@@ -48,3 +49,29 @@ class Commit(models.Model):
                                                list(commits))
         obj = cls(description=description, track=track, hash=str(commit_hash))
         obj.save()
+
+    def difference(self, commit):
+        repository = git.Repository(self.track.repository)
+        diff = repository.diff(self.hash, commit.hash)
+        # I'm sorry
+        before = json.loads(diff.patch.split('\n')[5][1:])
+        after = json.loads(diff.patch.split('\n')[7][1:])
+
+        result = {
+            "before": {},
+            "after": {}
+        }
+        for key, value in before.items():
+            result['before'][key] = {}
+            result['before'][key]['source'] = before
+            diffs = set(before[key].split('|')) - set(after[key].split('|'))
+            diffs_indexes = [before[key].split('|').index(item) for item in diffs]
+            result['before'][key]['difference'] = diffs_indexes
+
+        for key, value in after.items():
+            result['after'][key] = {}
+            result['after'][key]['source'] = after
+            diffs = set(after[key].split('|')) - set(before[key].split('|'))
+            diffs_indexes = [after[key].split('|').index(item) for item in diffs]
+            result['after'][key]['difference'] = diffs_indexes
+        return result
