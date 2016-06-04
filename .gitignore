@@ -1,4 +1,6 @@
 db.*
+db.sqlite3
+musichub/db.sqlite.3
 media/
 # Byte-compiled / optimized / DLL files
 __pycache__/
