@@ -49,23 +49,33 @@ def get_abc_note_from_midi(code):
     return note
 
 
-def duration(note):
-    duration = note.beat.duration.value
-    if duration > 8:
-        return "1/%i" % (duration / 8)
-    return str(1 / (duration / 8))
+def duration(beat):
+    duration = 8 / beat.duration.value
+    if beat.duration.isDotted:
+        duration += 0.5
+    if duration < 1.0:
+        return "1/%i" % int(1 / duration)
+    return str(int(duration))
 
 
 def add_effects(note, effects):
+    if effects.accentuatedNote:
+        note = "L" + note
+    if effects.heavyAccentuatedNote:
+        note = "LL" + note
     if effects.staccato:
-        note = '.' + note
-    # if effects.acce
+        note = "." + note
+
     return note
 
 
-def convert(track):
-    file_path = os.path.join(track.repository.split('.')[0], track.title)
-    song = guitarpro.parse(file_path)
+def convert(file=None):
+    """
+    Convert Guitar Pro files to ABC notation.
+    Takes GP* file instance as argument.
+    Returns dict with tracks as kays, and ABC notation as values.
+    """
+    song = guitarpro.parse(file)
 
     tracks = {}
     # All tracks
@@ -75,21 +85,33 @@ def convert(track):
         # Every measure
         for measure in track.measures:
             cur_measure = ""
+            # Hack for connecting notes
+            previous_duration = 0
+
             # Every beat
-            for beat in measure.voices[0].beats:
+            for i, beat in enumerate(measure.voices[0].beats):
                 cur_beat = "["
                 # Every note in chord (if it is chord)
-                for note in beat.notes:
-                    abc_note = get_abc_note_from_midi(note.realValue)
-                    abc_note += duration(note)
-                    abc_note = add_effects(abc_note, note.effect)
-                    cur_beat += abc_note
-                cur_beat += "] "
+                if not beat.notes:
+                    # Handle pauses
+                    cur_beat = "z%s " % duration(beat)
+                else:
+                    # Handle notes
+                    for note in beat.notes:
+                        abc_note = get_abc_note_from_midi(note.realValue)
+                        abc_note += duration(beat)
+                        abc_note = add_effects(abc_note, note.effect)
+                        cur_beat += abc_note
+                    cur_beat += "]"
+                    # Hackaton
+                    if i != 0 and (i % 2 == 0 or beat.duration.value != previous_duration):
+                        cur_beat += " "
+                        previous_duration = beat.duration.value
                 cur_measure += cur_beat
+                cur_measure = cur_measure.replace("\n", "")
                 if len(measures) % 4 == 0:
                     cur_measure += "\n"
             measures.append(cur_measure)
         measures[-1] += " |]"
-        measures[1] = "[" + measures[1]
         tracks[track.name] = "| ".join(measures)
     return tracks

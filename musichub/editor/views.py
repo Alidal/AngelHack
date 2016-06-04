@@ -9,5 +9,5 @@ class EditorView(View):
     template_name = 'repo/repo.html'
 
     def get(self, request):
-        key, value = convert(Track.objects.last()).popitem()
+        value = convert(Track.objects.last())['James Alan Hetfield']
         return render(request, self.template_name, {'result': value})

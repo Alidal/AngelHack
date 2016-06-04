@@ -37,6 +37,7 @@ class LoginView(FormView):
         login(self.request, self.user)
         return super().form_valid(form)
 
+
 class ProfileView(View):
     template_name = "profile.html"
 
