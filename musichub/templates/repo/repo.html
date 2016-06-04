@@ -4,22 +4,59 @@
 {% block content %}
 <div id="repo" class="content">
     <div class="container">
+        <div class="options">
+            <h3>Test song - <small><a href="/user">vladkampov</a></small></h3>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="branch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="fa fa-tree" aria-hidden="true"> branch: </i> master
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="branch">
+                                <li><a href="/repo/tree/new">new</a></li>
+                                <li><a href="/repo/tree/live">live</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown btn-group">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="track" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="fa fa-headphones" aria-hidden="true"></i> track: </i> guitar
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="track">
+                                <li><a href="/repo/">vox</a></li>
+                            </ul>
+                        </div>
+                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 commits</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="pull-right">
+                        <a href="edit" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                        <a href="upload" class="btn btn-success"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="play">
             
         </div>
         <div id="midi"></div>
-        <div id="notesABC">
-            X: 1
-            T: Cooley's
-            M: 4/4
-            L: 1/8
-            K: Emin
-            |:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
-            "Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
-            |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
-            "Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+        <div id="notes">
+            <div id="notesABC">
+                X: 1
+                T: Cooley's
+                M: 4/4
+                L: 1/8
+                K: Emin
+                |:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
+                "Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
+                |:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
+                "Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+            </div>
+            <div id="sheetABC"></div>
         </div>
-        <div id="sheetABC"></div>
     </div>
 </div>
 <script src="{% static 'js/repo.js' %}"></script>

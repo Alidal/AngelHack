@@ -45,7 +45,8 @@ module.exports = function(grunt) {
           ],
           'static/build/js/libs.js': [
             'node_modules/jquery/dist/jquery.min.js',
-            'static/dev/js/**/*.js'
+            'static/dev/js/**/*.js',
+            'node_modules/bootstrap/dist/js/bootstrap.min.js',
           ]
         }
       }
