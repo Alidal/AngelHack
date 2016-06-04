@@ -7,6 +7,13 @@ bash ./bin/pygit_install
 # Install all other requirements
 pip install -r requirements.txt
 
+# Install PyGuitarPro
+git clone https://github.com/Perlence/PyGuitarPro.git
+cd pyguitarpro
+python setup.py develop
+cd ..
+
+# Static
 cd musichub
 npm install
 grunt
