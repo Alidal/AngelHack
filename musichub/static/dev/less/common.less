@@ -104,7 +104,6 @@ body {
         &#diff {
             .row {
                 margin: 0;
-
             }
             #notes,
             #notesOld,
@@ -143,6 +142,52 @@ body {
             .play {
                 background-color: #f5f5f5;
                 padding: 15px;
+                a {
+                    color: #222222;
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: #444444 !important;
+                    }
+                }
+            }
+        }
+        &#commitslist {
+            .container {
+                background: #f5f5f5;
+                color: #222222;
+                margin: 50px auto;
+                .list {
+                    padding: 15px;
+                    .commit {
+                        .row {
+                            padding: 10px;
+                            background-color: #ffffff;
+                        }
+                        &:nth-child(2) {
+                            .row {
+                                background-color: #e7e7e7;
+                            }
+                        }
+                        div {
+                            vertical-align: middle;
+                            &.hash {
+                                text-align: center;
+                                color: #72750C;
+                            }
+                            &.user,
+                            &.time {
+                                text-align: center;
+                            }
+                            &.diff {
+                                text-align: right;
+                                a {
+                                    color: #1F8E8E;
+                                }
+                            }
+                        }
+                    }
+                }
                 a {
                     color: #222222;
                     &:hover,
