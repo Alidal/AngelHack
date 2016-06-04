@@ -23,6 +23,7 @@ urlpatterns = [
     # Custom registration and login
     # Main page
     url(r'^$', TemplateView.as_view(template_name='main.html')),
+    url(r'^new$', TemplateView.as_view(template_name='repo/new_repo.html')),
     # Apps urls
     url(r'^', include('track.urls')),
     url(r'^', include('editor.urls')),

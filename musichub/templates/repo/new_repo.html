@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div id="new_repo" class="content">
+    <div class="container">
+        <h3>Create new repository</h3>
+        <form action="/lalka" method="POST" class="dropzone" id="new_repo">
+            <div id="div_id_repotitle" class="control-group"> 
+                <label for="id_repotitle" class="control-label requiredField">
+                    Repo title<span class="asteriskField">*</span> 
+                </label> 
+                <div class="controls"> 
+                    <input class="form-control" id="id_repotitle" maxlength="30" name="repotitle" type="text">
+                </div> 
+            </div>
+            <div id="div_id_file" class="control-group"> 
+                <label for="id_file" class="control-label requiredField">
+                    GTP or ABC file<span class="asteriskField">*</span> 
+                </label> 
+                <input type="file" name="file" id="fileinput" />
+                <div id="drop" class="controls btn"> 
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i> drop files here
+                </div> 
+            </div>
+            <input type="submit" class="btn btn-success" value="Create"></input>
+        </form>
+    </div>
+</div>
+<script src="{% static 'js/new_repo.js' %}"></script>
+{% endblock %}
