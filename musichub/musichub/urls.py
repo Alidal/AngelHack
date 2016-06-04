@@ -26,5 +26,5 @@ urlpatterns = [
     # Apps urls
     url(r'^', include('track.urls')),
     url(r'^', include('editor.urls')),
-    url(r'^', include('basic.urls')),
+    url(r'^', include('personal.urls')),
 ]

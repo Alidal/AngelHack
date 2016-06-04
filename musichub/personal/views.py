@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.generic.edit import FormView
 from django.views.generic.base import View
-from basic.forms import RegistrationForm, LoginForm
+from personal.forms import RegistrationForm, LoginForm
 from track.models import Track
 
 
