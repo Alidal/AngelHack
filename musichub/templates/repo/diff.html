@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load cache %}
 
 {% block content %}
 <div id="diff" class="content">
@@ -39,18 +40,22 @@
         <div id="midiOld"></div>
         <div id="midiNew"></div>
         <div class="row">
+            {% cache 10000 notes_render old_hash instrument %}
             <div id="notesOld">
                 <div class="playOld">
                 </div>
                 <div id="notesABCOld">{{ old }}</div>
                 <div id="sheetABCOld"></div>
             </div>
+            {% endcache %}
+            {% cache 10000 notes_render old_hash instrument %}
             <div id="notesNew">
                 <div class="playNew">
                 </div>
                 <div id="notesABCNew">{{ new }}</div>
                 <div id="sheetABCNew"></div>
             </div>
+            {% endcache %}
         </div>
     </div>
 </div>

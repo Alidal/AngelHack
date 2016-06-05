@@ -113,5 +113,5 @@ def convert(file=None):
                     cur_measure += "\n"
             measures.append(cur_measure)
         measures[-1] += " |]"
-        tracks[track.name] = "| ".join(measures)
+        tracks[track.name.strip()] = "| ".join(measures)
     return tracks
