@@ -7,9 +7,23 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/libs.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script src="{% static 'js/libs.js' %}" type="text/javascript"></script>
+  <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
   <link href="{% static 'img/favicon.ico' %}" rel="icon" type="image/x-icon" />
 </head>
 <body>
+  <div id="loading">
+    <div class="abs">
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+    </div>
+  </div>
   {% block header %}
     {% include 'header.html' %}
   {% endblock %}
