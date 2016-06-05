@@ -33,7 +33,7 @@ class Track(models.Model):
             return StringIO(json.dumps(result))
         except:
             # If file already in ABC format
-            return file
+            return StringIO(json.dumps({"Basic": file.read().decode('ascii')}))
 
     @classmethod
     def create(cls, title, owner, file):
@@ -50,5 +50,5 @@ class Track(models.Model):
         Commit.create(description, new_file, self)
 
     def get_track(self):
-        file = open(self.repository.split('.')[0] + '/' + self.title, 'r+')
+        file = open(self.repository.split('.')[0] + self.title, 'r+')
         return json.loads(file.read())
