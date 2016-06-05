@@ -38,4 +38,5 @@ $ ->
             contentType: false,
             data: formData
         .success (data)->
-            console.log data
+            if data.success
+                window.location.replace '/' + user

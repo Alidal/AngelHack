@@ -35,6 +35,7 @@ module.exports = function(grunt) {
           'static/build/js/profile.js': ['static/dev/coffee/profile.coffee'],
           'static/build/js/new_repo.js': ['static/dev/coffee/new_repo.coffee'],
           'static/build/js/diff.js': ['static/dev/coffee/diff.coffee'],
+          'static/build/js/edit.js': ['static/dev/coffee/edit.coffee'],
         }
       }
     },
@@ -49,6 +50,7 @@ module.exports = function(grunt) {
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
             'static/dev/js/**/*.js',
+            'node_modules/requirejs/lib/abc_parser/index.js'
           ]
         }
       }

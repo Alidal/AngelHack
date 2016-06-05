@@ -101,7 +101,8 @@ body {
             }
         }
         &#repo,
-        &#diff {
+        &#diff,
+        &#edit {
             .row {
                 margin: 0;
             }
@@ -150,6 +151,16 @@ body {
                         color: #444444 !important;
                     }
                 }
+            }
+        }
+        &#edit {
+            #miniSheet {
+                width: 40% !important;
+            }
+
+            #textarea {
+                display: none;
+                // color: #222;
             }
         }
         &#commitslist {
@@ -318,4 +329,38 @@ body {
         font-size: 0.8em;
         color: @panelTextColor;
     }
+}
+#changer {
+    background-color: #e7e7e7;
+    position: fixed;
+    bottom: -200px;
+    z-index: 9999;
+    padding: 0;
+    left: 0;
+    right: 0;
+    width: 35%;
+    margin: auto;
+    padding: 15px;
+    h3 {
+        margin: 0;
+        color: #222222;
+    }
+    padding-right: 50px;
+    #textareamini{
+        margin-top: 35px;
+    }
+    input {
+        display: block;
+        width: 100%;
+    }
+    .transition;
+    &.active {
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        bottom: 0;
+    }
+}
+.options {
+    margin: 15px 0;
 }
