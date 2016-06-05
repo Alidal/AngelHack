@@ -35,6 +35,8 @@ class LoginView(FormView):
     def form_valid(self, form):
         self.user = form.get_user()
         login(self.request, self.user)
+        if hasattr(self.user, 'username'):
+            self.success_url = "/%s" % self.user.username
         return super().form_valid(form)
 
 

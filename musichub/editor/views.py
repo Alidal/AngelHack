@@ -43,10 +43,9 @@ class EditorView(RepositoryView):
 
 class SaveView(View):
     def post(self, request):
-        data = request.POST
-        track = Track.objects.get(pk=data['data']['repo_pk'])
-        instrument = data['data']['instrument']
-
+        data = request.POST.copy()
+        track = Track.objects.get(pk=data['repo_pk'])
+        instrument = data['instrument']
         source = track.get_track()
         source[instrument] = data['notes']
         file = StringIO(json.dumps(source))

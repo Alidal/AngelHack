@@ -30,7 +30,9 @@ $ ->
         formData = new FormData
         formData.append "description", document.getElementById('id_commitdescription').value
         formData.append "notes", document.getElementById('textarea').value
-        formData.append "data", data
+        formData.append "instrument", instrument
+        formData.append "repo_pk", repo_pk
+
 
         $.ajax
             method: "POST",

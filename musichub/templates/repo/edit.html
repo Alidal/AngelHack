@@ -64,10 +64,8 @@
     </div>
 </div>
 <script>
-    var data = {
-        "instrument": "{{ instrument }}",
-        "repo_pk": {{ track.pk }},
-    }
+    var instrument = "{{ instrument }}"
+    var repo_pk = {{ track.pk }}
 </script>
 <script src="{% static 'js/edit.js' %}"></script>
 {% endblock %}

@@ -32,8 +32,11 @@ class Track(models.Model):
             result = convert(file)
             return StringIO(json.dumps(result))
         except:
-            # If file already in ABC format
-            return StringIO(json.dumps({"Basic": file.read().decode('ascii')}))
+            # If file already in ABC format (might be binary or simple string)
+            try:
+                return StringIO(json.dumps({"Basic": file.read().decode('ascii')}))
+            except:
+                return StringIO(json.dumps({"Basic": file.read()}))
 
     @classmethod
     def create(cls, title, owner, file):
