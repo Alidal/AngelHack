@@ -29,7 +29,8 @@ $ ->
         formData = new FormData
         formData.append $('input:text').attr("id"), $('input:text').val()
         formData.append "file", document.getElementById('id_file').files[0]
-        formData.append "pk", document.getElementById('id_repo_pk').value
+        if document.getElementById('id_repo_pk')
+            formData.append "pk", document.getElementById('id_repo_pk').value
 
 
         $.ajax

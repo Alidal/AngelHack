@@ -144,9 +144,9 @@ CRISPY_CLASS_CONVERTERS = {'textinput': "form-control",
                            'emailinput': "form-control",
                            'passwordinput': "form-control"}
 
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': '/var/run/redis/redis.sock',
-    },
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': '/var/run/redis/redis.sock',
+#     },
+# }

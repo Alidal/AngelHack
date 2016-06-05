@@ -61,8 +61,7 @@ module.exports = function(grunt) {
         files: [
           {expand: true, flatten: true, src: 'node_modules/bootstrap/dist/fonts/**', dest: 'static/build/fonts/'},
           {expand: true, flatten: true, src: 'node_modules/font-awesome/fonts/**', dest: 'static/build/fonts/'},
-          {expand: true, flatten: true, src: 'static/dev/img/**', dest: 'static/build/img/'},
-          {expand: true, flatten: true, src: 'static/dev/soundfont/**', dest: 'static/build/soundfont/'}
+          {expand: true, flatten: true, src: 'static/dev/img/**', dest: 'static/build/img/'}
         ]
       }
     },

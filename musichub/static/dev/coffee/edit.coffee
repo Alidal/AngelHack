@@ -20,7 +20,6 @@ $ ->
     $('#save').on 'click', (e)->
         e.preventDefault()
         replacement = $('#chord').val()
-        console.log window.mainSelected
         $('#textarea').val($('#textarea').val().substring(0, mainSelected.start) + replacement + $('#textarea').val().substring(mainSelected.end, mainSelected.len));
         $('#textarea').trigger 'change'
         $('#changer').removeClass('active')
@@ -42,7 +41,7 @@ $ ->
             data: formData
         .success (data)->
             if data.success
-                window.location.refresh
+                window.location.refresh()
 
 
     
