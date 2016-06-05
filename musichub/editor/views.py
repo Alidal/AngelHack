@@ -1,4 +1,8 @@
+import json
+from io import StringIO
+
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.generic import View
 
 from track.models import Track
@@ -32,3 +36,17 @@ class RepositoryView(View):
 
 class EditorView(RepositoryView):
     template_name = 'repo/edit.html'
+
+
+class SaveView(View):
+    def post(self, request):
+        data = request.POST
+        track = Track.objects.get(pk=data['data']['repo_pk'])
+        instrument = data['data']['instrument']
+
+        source = track.get_track()
+        source[instrument] = data['notes']
+        file = StringIO(json.dumps(source))
+        track.update(data['description'], file)
+
+        return JsonResponse({"success": True})

@@ -26,5 +26,23 @@ $ ->
         $('#changer').removeClass('active')
 
 
+    $('#id_submit').on 'click', (e)->
+        e.preventDefault()
+        formData = new FormData
+        formData.append "description", document.getElementById('id_commitdescription').value
+        formData.append "notes", document.getElementById('textarea').value
+        formData.append "data", data
+
+        $.ajax
+            method: "POST",
+            url: "/track/save",
+            dataType: "json",
+            processData: false,
+            contentType: false,
+            data: formData
+        .success (data)->
+            if data.success
+                window.location.refresh
+
 
     
