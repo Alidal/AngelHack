@@ -15,9 +15,11 @@ class RepositoryView(View):
     def get(self, request, username, pk):
         track = Track.objects.get(pk=pk)
         if request.GET.get("commit") and Commit.objects.filter(track=track).count() > 1:
-            notes = Commit.objects.get(hash=request.GET['commit']).get_source()
+            commit = Commit.objects.get(hash=request.GET['commit'])
+            notes = commit.get_source()
         else:
             notes = track.get_track()
+            commit = track.commits.all().order_by('-time').last()
 
         if request.GET.get('instrument', None):
             key = request.GET['instrument']
@@ -29,7 +31,8 @@ class RepositoryView(View):
             'notes': value,
             'track': track,
             'instrument': key,
-            'instruments': notes.keys()
+            'instruments': notes.keys(),
+            'commit': commit
         }
         return render(request, self.template_name, context)
 

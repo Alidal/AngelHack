@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load cache %}
 
 {% block content %}
 <div id="repo" class="content">
@@ -41,17 +42,17 @@
                 </div>
             </div>
         </div>
-        <div class="play">
-<!--             <a href="#" class="btn" id="play"><i class="fa fa-play" aria-hidden="true"></i> Play</a>
-            <a href="#" class="btn" id="stop"><i class="fa fa-stop" aria-hidden="true"></i> Stop</a> -->
-        </div>
-        <div id="midi"></div>
-        <div id="notes">
-            <div id="notesABC">
-                {{ notes }}
+        {% cache 10000 notes_render commit.hash instrument %}
+            <div class="play">
+                <!-- <a href="#" class="btn" id="play"><i class="fa fa-play" aria-hidden="true"></i> Play</a>
+                <a href="#" class="btn" id="stop"><i class="fa fa-stop" aria-hidden="true"></i> Stop</a> -->
             </div>
-            <div id="sheetABC"></div>
-        </div>
+            <div id="midi"></div>
+            <div id="notes">
+                <div id="notesABC">{{ notes }}</div>
+                <div id="sheetABC"></div>
+            </div>
+        {% endcache %}
     </div>
 </div>
 <script src="{% static 'js/repo.js' %}"></script>
