@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 
 from track.models import Track
+from backend.models import Commit
 
 
 class EditorView(View):
@@ -9,7 +10,11 @@ class EditorView(View):
 
     def get(self, request, username, pk):
         track = Track.objects.get(pk=pk)
-        notes = track.get_track()
+        if request.GET.get("commit"):
+            notes = Commit.objects.get(hash=request.GET['commit']).get_source()
+        else:
+            notes = track.get_track()
+
         if request.GET.get('instrument', None):
             key = request.GET['instrument']
             value = notes[key]

@@ -59,13 +59,12 @@ class Commit(models.Model):
         """
         repository = git.Repository(self.track.repository)
         commit = repository.revparse_single(self.hash)
-        diff = commit.tree.diff_to_workdir().patch
+        diff = commit.tree.diff_to_workdir()
         return json.loads(diff.patch.split('\n')[7][1:])
 
     def get_parent_commit_hash(self):
         repository = git.Repository(self.track.repository)
         commit = repository.revparse_single(self.hash)
-        import ipdb; ipdb.set_trace()
         return commit.parents[-1].id if commit.parents else None
 
     def difference(self, commit):

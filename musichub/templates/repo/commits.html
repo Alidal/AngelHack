@@ -8,7 +8,7 @@
             {% for commit in commit_list %}
             <div class="commit">
                 <div class="row">
-                    <div class="col-md-1 hash"><small>{{ commit.hash|truncatechars:13 }}</small></div>
+                    <div class="col-md-1 hash"><a href="/{{ track.owner.username }}/{{ track.pk }}?commit={{ commit.hash }}"><small>{{ commit.hash|truncatechars:13 }}</small></a></div>
                     <div class="col-md-6 description">{{ commit.description }}</div>
                     <div class="col-md-2 user"><a href="">{{ track.owner.username }}</a></div>
                     <div class="col-md-2 time">{{ commit.time }}</div>
