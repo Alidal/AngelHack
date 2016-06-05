@@ -25,7 +25,7 @@ $ ->
         $('#changer').removeClass('active')
 
 
-    $('#id_submit').on 'click', (e)->
+    $('form').submit (e)->
         e.preventDefault()
         formData = new FormData
         formData.append "description", document.getElementById('id_commitdescription').value
