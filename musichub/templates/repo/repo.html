@@ -5,7 +5,7 @@
 <div id="repo" class="content">
     <div class="container">
         <div class="options">
-            <h2><span class="song-title">{{ track.title }}</span> - <small><a href="/user">{{ track.owner.username }}</a></small></h2>
+            <h2><span class="song-title">{{ track.title }}</span> - <small><a href="/{{ track.owner.username }}">{{ track.owner.username }}</a></small></h2>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="btn-group" role="group" aria-label="...">
@@ -30,13 +30,13 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits|length }} commits</a>
+                        <a href="/{{ user.username }}/{{ track.pk }}/commit/list" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits.all|length }} commits</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="pull-right">
                         <a href="edit" class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                        <a href="upload" class="btn btn-success upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
+                        <a href="{{ track.pk }}/commit/create" class="btn btn-success upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
                     </div>
                 </div>
             </div>

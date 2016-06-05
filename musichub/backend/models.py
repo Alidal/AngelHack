@@ -14,6 +14,9 @@ class Commit(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     track = models.ForeignKey('track.Track', related_name='commits')
 
+    def __str__(self):
+        return "%s - %s" % (self.description, self.track.title)
+
     @classmethod
     def create(cls, description, file, track, initial=False):
         if initial:
@@ -50,6 +53,21 @@ class Commit(models.Model):
         obj = cls(description=description, track=track, hash=str(commit_hash))
         obj.save()
 
+    def get_source(self):
+        """
+        A little bit tricky method for getting file state from commit.
+        """
+        repository = git.Repository(self.track.repository)
+        commit = repository.revparse_single(self.hash)
+        diff = commit.tree.diff_to_workdir().patch
+        return json.loads(diff.patch.split('\n')[7][1:])
+
+    def get_parent_commit_hash(self):
+        repository = git.Repository(self.track.repository)
+        commit = repository.revparse_single(self.hash)
+        import ipdb; ipdb.set_trace()
+        return commit.parents[-1].id if commit.parents else None
+
     def difference(self, commit):
         repository = git.Repository(self.track.repository)
         diff = repository.diff(self.hash, commit.hash)
@@ -63,14 +81,14 @@ class Commit(models.Model):
         }
         for key, value in before.items():
             result['before'][key] = {}
-            result['before'][key]['source'] = before
+            result['before'][key]['source'] = before[key]
             diffs = set(before[key].split('|')) - set(after[key].split('|'))
             diffs_indexes = [before[key].split('|').index(item) for item in diffs]
             result['before'][key]['difference'] = diffs_indexes
 
         for key, value in after.items():
             result['after'][key] = {}
-            result['after'][key]['source'] = after
+            result['after'][key]['source'] = after[key]
             diffs = set(after[key].split('|')) - set(before[key].split('|'))
             diffs_indexes = [after[key].split('|').index(item) for item in diffs]
             result['after'][key]['difference'] = diffs_indexes

@@ -27,7 +27,7 @@ $ ->
     $('form').submit (e)->
         e.preventDefault()
         formData = new FormData
-        formData.append "input", $('input:text').val()
+        formData.append $('input:text').attr("id"), $('input:text').val()
         formData.append "file", document.getElementById('id_file').files[0]
 
         $.ajax
