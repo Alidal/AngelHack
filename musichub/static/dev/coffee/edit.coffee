@@ -24,6 +24,9 @@ $ ->
         $('#textarea').trigger 'change'
         $('#changer').removeClass('active')
 
+    $('#chord').keyup (e)->
+        if e.keyCode is 13
+            $('#save').click()
 
     $('form').submit (e)->
         e.preventDefault()
@@ -43,7 +46,7 @@ $ ->
             data: formData
         .success (data)->
             if data.success
-                window.location.refresh()
+                window.location.reload()
 
 
     

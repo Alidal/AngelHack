@@ -36,7 +36,7 @@ class Track(models.Model):
             try:
                 return StringIO(json.dumps({"Basic": file.read().decode('ascii')}))
             except:
-                return StringIO(json.dumps({"Basic": file.read()}))
+                return file
 
     @classmethod
     def create(cls, title, owner, file):

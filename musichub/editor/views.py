@@ -46,9 +46,11 @@ class SaveView(View):
         data = request.POST.copy()
         track = Track.objects.get(pk=data['repo_pk'])
         instrument = data['instrument']
-        source = track.get_track()
-        source[instrument] = data['notes']
-        file = StringIO(json.dumps(source))
+        import ipdb; ipdb.set_trace()
+
+        notes = track.get_track()
+        notes[instrument] = data['notes']
+        file = StringIO(json.dumps(notes))
         track.update(data['description'], file)
 
         return JsonResponse({"success": True})
