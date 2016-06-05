@@ -30,7 +30,7 @@
                                 {% endfor %}}
                             </ul>
                         </div>
-                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits.all|length }} commits</a>
+                        <a href="/{{ request.user.username }}/{{ track.pk }}/commit/list" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits.all|length }} commits</a>
                     </div>
                 </div>
             </div>
@@ -42,17 +42,13 @@
             <div id="notesOld">
                 <div class="playOld">
                 </div>
-                <div id="notesABCOld">
-                    {{ old }}
-                </div>
+                <div id="notesABCOld">{{ old }}</div>
                 <div id="sheetABCOld"></div>
             </div>
             <div id="notesNew">
                 <div class="playNew">
                 </div>
-                <div id="notesABCNew">
-                    {{ new }}
-                </div>
+                <div id="notesABCNew">{{ new }}</div>
                 <div id="sheetABCNew"></div>
             </div>
         </div>

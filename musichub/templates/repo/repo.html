@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="pull-right">
-                        <a href="edit" class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                        <a href="/{{ request.user.username }}/{{ track.pk }}/edit?instrument={{ instrument }}" class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                         <a href="{{ track.pk }}/commit/create?pk={{ track.pk }}" class="btn btn-success upload"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload new version</a>
                     </div>
                 </div>

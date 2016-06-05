@@ -26,7 +26,8 @@
                     Commit description<span class="asteriskField">*</span> 
                 </label> 
                 <div class="controls"> 
-                    <input class="form-control" id="id_commitdescription" maxlength="30" name="repotitle" value="{{ request}}" type="text">
+                    <input class="form-control" id="id_commitdescription" maxlength="30" name="repotitle" type="text">
+                    <input class="form-control" id="id_repo_pk" style="display:none" name="repo_pk" type="text" value="{{ request.GET.pk }}">
                 </div> 
             </div>
             {% endif %}

@@ -30,7 +30,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <a href="/repo/tree/master/commits/" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits|length }} commits</a>
+                        <a href="/{{ request.user.username }}/{{ track.pk }}/commit/list" class="btn btn-default"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ track.commits.all|length }} commits</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-3">
@@ -44,19 +44,7 @@
                 </div>
             </div>
         </div>
-        <textarea name="" id="textarea" cols="30" rows="10">
-X: 1
-T: Metallica - Master of Puppets 
-C: 
-K: C
-M: C
-Q: 230
-W: 
-| z8 | [^A'2^D'2^D2]z2 z4 | [^G'1^C'1] z1/2  [G'1C'1] z1/2 [^F'4B4] | [^C'8^G8]
-| [^D1][^D1] [^D'1] [^D1][^D1] [D'1][^D1] [^D1]| [^G'1^C'1]z1/2 [G'1C'1] z1/2 [^F'4B4] | [C''1^D1][^D1] [^A1] [^D1][^D1] [A1][^D1] [F''1^D1]| [^G1][^D1] [G1] [^D1][G'1^F1] [^D1][F1] [^D1]
-| [B'1^D1][^D1] [^D'1] [^D1][^D1] [D'1][^D1] [^D1]| [^G'1^C'1]z1/2 [G'1C'1] z1/2 [^F'4B4] | [^D1][^D1] [^A1] [^D1][^D1] [A1][^D1] [^D1]| [^G1][^D1] [G1] [^D1][^F1] [^D1][F1] [^D1]
-| [^D1][^D1] [^D'1] [^D1][^D1] [D'1][^D1] [^D1]| [^G'1^C'1]z1/2 [G'1C'1] z1/2 [^F'4B4] | [D'1^D1][^D1] [^A1] [^D1][^D1] [A1][^D1] [^D1]| [B1^G1][^D1] [G1] [^D1][^F1] [^D1][A1F1] [^D1]
-        </textarea>
+        <textarea name="" id="textarea" cols="30" rows="10">{{ notes }}</textarea>
         <div id="midi"></div>
         <div id="notes">
             <div id="sheetABC"></div>

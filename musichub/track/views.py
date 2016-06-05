@@ -17,9 +17,7 @@ class AddTrackView(View):
         user = User.objects.get(pk=self.request.user.pk)
         if 'id_commitdescription' in data:
             # For commit
-            import ipdb; ipdb.set_trace()
-            track = Track.objects.get(title=data['id_commitdescription'],
-                                      owner=user)
+            track = Track.objects.get(pk=data['pk'])
             track.update(description=data['id_commitdescription'],
                          new_file=request.FILES['file'])
         else:

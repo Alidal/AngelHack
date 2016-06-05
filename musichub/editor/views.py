@@ -5,7 +5,7 @@ from track.models import Track
 from backend.models import Commit
 
 
-class EditorView(View):
+class RepositoryView(View):
     template_name = 'repo/repo.html'
 
     def get(self, request, username, pk):
@@ -28,3 +28,7 @@ class EditorView(View):
             'instruments': notes.keys()
         }
         return render(request, self.template_name, context)
+
+
+class EditorView(RepositoryView):
+    template_name = 'repo/edit.html'
