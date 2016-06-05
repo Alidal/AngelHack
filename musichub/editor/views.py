@@ -10,7 +10,7 @@ class EditorView(View):
 
     def get(self, request, username, pk):
         track = Track.objects.get(pk=pk)
-        if request.GET.get("commit"):
+        if request.GET.get("commit") and Commit.objects.filter(track=track).count() > 1:
             notes = Commit.objects.get(hash=request.GET['commit']).get_source()
         else:
             notes = track.get_track()
